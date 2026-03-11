@@ -222,7 +222,7 @@ export default function BookingForm() {
       const data = await submitBooking(payload);
 
       if (data.success) {
-        toast.success("Booking submitted! We'll confirm your ride shortly.");
+        toast.success("Booking submitted! We'll confirm shortly.");
         dispatch({ type: ActionType.ResetForm });
       }
     } catch {

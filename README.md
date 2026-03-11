@@ -1,4 +1,4 @@
-# ExampleIQ — Ride Booking App
+# ExampleIQ — Booking App
 
 A transportation booking form built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4.
 
