@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ExampleIQ — Ride Booking App
 
-## Getting Started
+A transportation booking form built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4.
 
-First, run the development server:
+## Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Node.js](https://nodejs.org/) 18.17 or later
+- [pnpm](https://pnpm.io/) package manager (`npm install -g pnpm`)
+- A Google Cloud Platform account with a valid API key
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Google Maps API Key Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project (or select an existing one)
+3. Navigate to **APIs & Services > Library**
+4. Enable the following APIs:
+   - **Maps JavaScript API**
+   - **Places API**
+   - **Distance Matrix API**
+5. Navigate to **APIs & Services > Credentials**
+6. Click **Create Credentials > API Key**
+7. (Recommended) Restrict the key:
+   - Under **Application restrictions**, select **HTTP referrers** and add `http://localhost:3000/*`
+   - Under **API restrictions**, select the three APIs listed above
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Local Setup
 
-## Learn More
+1. Clone the repository and install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone <repository-url>
+   cd example-iq
+   pnpm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Create your environment file:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   cp .env.local.example .env.local
+   ```
 
-## Deploy on Vercel
+3. Open `.env.local` and paste your Google Maps API key:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```
+   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_actual_api_key_here
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Start the development server:
+
+   ```bash
+   pnpm dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Features
+
+- **Service type selection**: One-way or Hourly booking
+- **Google Places Autocomplete**: Search for pickup/dropoff locations and airports
+- **Distance & travel time**: Automatically calculated via Google Distance Matrix API when both locations are set
+- **Phone number lookup**: Enter a phone number to check if you're a returning customer. Pre-seeded numbers for testing:
+  - `+1 617 555 1234` (Sarah)
+  - `+1 212 555 9876` (Michael)
+- **New customer registration**: If a phone number isn't recognized, the form asks for name and email
+- **Multiple stops**: Add intermediate stops between pickup and drop off
+- **Form validation**: All required fields are validated before submission
+- **Mock API**: Bookings submit to `/api/bookings` (in-memory, resets on server restart)
+
+## Scripts
+
+| Command      | Description              |
+| ------------ | ------------------------ |
+| `pnpm dev`   | Start development server |
+| `pnpm build` | Production build         |
+| `pnpm start` | Start production server  |
+| `pnpm lint`  | Run ESLint               |
