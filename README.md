@@ -42,7 +42,7 @@ A transportation booking form built with Next.js 16, React 19, TypeScript, and T
 3. Open `.env.local` and paste your Google Maps API key:
 
    ```
-   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_actual_api_key_here
+   GOOGLE_MAPS_API_KEY=your_actual_api_key_here
    ```
 
 4. Start the development server:
